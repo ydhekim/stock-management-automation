@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>Stok Yönetim</title>
+	<link rel="stylesheet" type="text/css" href="../css/bootstrap.css">
+	<link rel="stylesheet" type="text/css" href="../css/custom.css">
+	<link rel="stylesheet" type="text/css" href="../font-awesome-4.7.0/css/font-awesome.css">
+	<meta charset="utf-8">
+</head>
+<body>
+	<div class="col-md-12">
+		<div class="row">
+			<div class="col-md-4 sidebar" >
+				<div class="col-md-12 attendant-info row">
+					<div class="col-md-6 col-sm-12">
+						<!-- src kısmına kullanıcının resmi çekilecek-->
+						<center>
+							<img style="width: 80%;height: auto; " class="user-profile-photo" src="../img/ertu.jpg">
+						</center>
+					</div>
+					<div class="col-md-6 col-sm-12">
+						<center>
+							<p style="margin-top: 15%;font-size: 150%;font-weight: 600;">Hoşgeldin, <span>İsim</span></p>
+							<p style="font-size: 100%;font-weight: 500;">Statü</p>
+						</center>
+					</div>
+				</div>
+				<div id="list" class="col-md-12 menu-list">
+					<a class="list" href="product.html">Ürünler</a>
+					<a class="list" href="order.html">Siparişler</a>
+				</div>
+				<div class="col-md-12" id="logout" style="width: 100%;position: absolute;bottom: 0px;">
+					<a class="list" href="#">Çıkış</a>
+					
+				</div>
+			</div>
+			<div class="offset-md-4 col-md-8">
+				<div id="navbar" class="col-md-12 navbar">
+					<a id="ico-navbar" class="list" href="#">Menü</a>
+				</div>
+				<!----  Orta Alan Başlangıç--->
+				<div class="col-md-12 index-area">
+					<!---- Header Başlangıç---->
+					<div class="col-md-12 header">
+						<h3 class="header-text">Ürünler</h2>
+							<a href="add-product.html"><button type="button" class="btn btn-success btn-lg add-btn"><i class="fa fa-plus" aria-hidden="true"> Ürün Ekle</i></button></a>
+						</div>
+						<!----Header Bitiş ---->
+						<div class="col-md-12 text-area">
+							<table class="table">
+								<thead class="thead-light">
+									<tr>
+										<th scope="col">#</th>
+										<th scope="col">First</th>
+										<th scope="col">Last</th>
+										<th scope="col">Handle</th>
+										<th></th>
+									</tr>
+								</thead>
+								<tbody>
+									<tr>
+										<th scope="row">1</th>
+										<td>Mark</td>
+										<td>Otto</td>
+										<td>@mdo</td>
+										<td>
+											<a href="u-product.html"><button type="button" class="btn btn-primary btn-sm"><i class="fa fa-pencil" aria-hidden="true"> Düzenle</i></button></a>
+											<button type="button" class="btn btn-danger btn-sm"><i class="fa fa-trash-o" aria-hidden="true"> Sil</i></button>
+										</td>
+									</tr>
+									<tr>
+										<th scope="row">2</th>
+										<td>Jacob</td>
+										<td>Thornton</td>
+										<td>@fat</td>
+										<td>
+											<a href="u-product.html"><button type="button" class="btn btn-primary btn-sm"><i class="fa fa-pencil" aria-hidden="true"> Düzenle</i></button></a>
+											<button type="button" class="btn btn-danger btn-sm"><i class="fa fa-trash-o" aria-hidden="true"> Sil</i></button>
+										</td>
+									</tr>
+									<tr>
+										<th scope="row">3</th>
+										<td>Larry</td>
+										<td>the Bird</td>
+										<td>@twitter</td>
+										<td>
+											<a href="u-product.html"><button type="button" class="btn btn-primary btn-sm"><i class="fa fa-pencil" aria-hidden="true"> Düzenle</i></button></a>
+											<button type="button" class="btn btn-danger btn-sm"><i class="fa fa-trash-o" aria-hidden="true"> Sil</i></button>
+										</td>
+									</tr>
+								</tbody>
+							</table>
+						</div>
+					</div>
+					<!-------Orta Alan Bitiş------>
+				</div>
+			</div>
+		</div>
+		<script>
+			document.getElementById("ico-navbar").onclick = function() {myFunction()};
+
+			function myFunction() {
+				document.getElementById("list").style.display ="block";
+				document.getElementById('navbar').style.display="none";
+			}
+		</script>
+	</body>
+	</html>
