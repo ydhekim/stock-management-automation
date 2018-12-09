@@ -1,7 +1,4 @@
-/** 
- * @author Yasin Dogukan Hekim
- * @see ydhekim.github.io
- * */
+
 package io.github.ydhekim.stock_management_automation.dao;
 
 import java.util.HashMap;
