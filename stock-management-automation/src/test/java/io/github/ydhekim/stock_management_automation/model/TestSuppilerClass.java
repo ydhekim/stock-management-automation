@@ -1,6 +1,7 @@
-/**
- * @author ydhekim
- *  */
+/** 
+ * @author Yasin Dogukan Hekim
+ * @see ydhekim.github.io
+ * */
 package io.github.ydhekim.stock_management_automation.model;
 
 import static org.junit.Assert.*;
