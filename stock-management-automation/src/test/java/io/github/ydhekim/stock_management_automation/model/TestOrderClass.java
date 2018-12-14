@@ -66,13 +66,6 @@ public class TestOrderClass {
 		assertTrue(order.isConfirmed());
 	}
 
-	// TODO: Get/Set for orderDate!
-//	@Test
-//	public void testGetOrderDate() {
-//		Order order = new Order();
-//		order.getOrderDate().getYear();
-//	}
-
 	@Test
 	public void testGetSupplier() {
 		Order order = new Order();

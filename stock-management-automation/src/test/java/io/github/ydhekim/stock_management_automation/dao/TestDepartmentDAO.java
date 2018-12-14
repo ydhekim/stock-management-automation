@@ -17,8 +17,8 @@ public class TestDepartmentDAO {
 	@Test
 	public void testDeleteDepartment() {
 		DepartmentDAO departmentDao = new DepartmentDAOImpl();
-		departmentDao.deleteDepartment(1);
-		assertNull(departmentDao.getDepartment(1).getName());
+		departmentDao.deleteDepartment(11);
+		assertNull(departmentDao.getDepartment(11).getName());
 	}
 
 	@Test
@@ -31,15 +31,15 @@ public class TestDepartmentDAO {
 	@Test
 	public void testInsertDepartment() {
 		DepartmentDAO departmentDAO = new DepartmentDAOImpl();
-		departmentDAO.insertDepartment(6, "dep6");
-		assertNotNull(departmentDAO.getDepartment(6).getName());
+		departmentDAO.insertDepartment(11, "dep11");
+		assertNotNull(departmentDAO.getDepartment(11).getName());
 	}
 
 	@Test
 	public void testUpdateDepartment() {
 		DepartmentDAO departmentDAO = new DepartmentDAOImpl();
 		String departmentName = departmentDAO.getDepartment(3).getName();
-		departmentDAO.updateDepartment(3, "udep3");
+		departmentDAO.updateDepartment(3, "dep3");
 		String newDepartmentName = departmentDAO.getDepartment(3).getName();
 		assertNotEquals(departmentName, newDepartmentName);
 	}

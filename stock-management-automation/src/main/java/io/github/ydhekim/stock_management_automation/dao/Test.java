@@ -6,14 +6,20 @@ public class Test {
 	public static void main(String[] args) {
 
 		DepartmentDAO dao = new DepartmentDAOImpl();
-
-		System.out.println(dao.getDepartment(1).getName());
-
+		
+		
+		System.out.println(dao.getDepartment(2).getName());
+		
+		dao.updateDepartment(2, "dep2_degıstı");
+		
+		System.out.println(dao.getDepartment(2).getName());
+		
+		dao.deleteDepartment(2);
+		
+		System.out.println(dao.getDepartment(2).getName());
+		
 		System.out.println(dao.getAllDepartments());
-
-		SupplierDAO dao2 = new SupplierDAOImpl();
-
-		System.out.println(dao2.getSupplier(1).getName());
+	
 
 	}
 

@@ -50,13 +50,13 @@ public class Order {
 		this.confirmed = confirmed;
 	}
 
-//	public Date getOrderDate() {
-//		return orderDate;
-//	}
-//
-//	public void setOrderDate(Date orderDate) {
-//		this.orderDate = orderDate;
-//	}
+	public Date getOrderDate() {
+		return orderDate;
+	}
+
+	public void setOrderDate(Date orderDate) {
+		this.orderDate = orderDate;
+	}
 
 	public Supplier getSupplier() {
 		return supplier;
