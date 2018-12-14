@@ -7,7 +7,6 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.List;
 
 import io.github.ydhekim.stock_management_automation.model.Product;
 import io.github.ydhekim.stock_management_automation.model.Supplier;
@@ -156,20 +155,20 @@ public class SupplierDAOImpl implements SupplierDAO {
 		}
 		return supplier;
 	}
-	
-	// TODO: gozden gecir
-	public String getAllSuppliers() {
-		Supplier supplier = new Supplier();
-		Product product = new Product();
-		ArrayList<Supplier> list = new ArrayList<>();
+
+	@Override
+	public ArrayList<Supplier> getAllSuppliers() {
+		ArrayList<Supplier> suppliers = new ArrayList<Supplier>();
 		try {
 			Class.forName(JDBC_DRIVER);
 			connection = DriverManager.getConnection(DB_URL, USER, PASS);
 			statement = connection.createStatement();
-			String sql = "SELECT * FROM SUPPLIER";
+			String sql = "SELECT * FROM supplier";
 			ResultSet resultSet = statement.executeQuery(sql);
 
 			while (resultSet.next()) {
+				Supplier supplier = new Supplier();
+				Product product = new Product();
 				int supplierIdFromDatabase = resultSet.getInt("supplier_id");
 				int productIdFromDatabase = resultSet.getInt("product_id");
 				String supplierNameFromDatabase = resultSet.getString("supplier_name");
@@ -178,7 +177,7 @@ public class SupplierDAOImpl implements SupplierDAO {
 				supplier.setProduct(product);
 				supplier.setName(supplierNameFromDatabase);
 
-				list.add(supplier);
+				suppliers.add(supplier);
 			}
 			resultSet.close();
 			statement.close();
@@ -202,7 +201,7 @@ public class SupplierDAOImpl implements SupplierDAO {
 				se.printStackTrace();
 			}
 		}
-		return Arrays.toString(list.toArray());
+		return suppliers;
 	}
 
 }

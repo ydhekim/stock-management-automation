@@ -6,7 +6,8 @@ package io.github.ydhekim.stock_management_automation.model;
 
 import static org.junit.Assert.*;
 
-import java.util.Date;
+import java.util.Calendar;
+import java.util.GregorianCalendar;
 
 import org.junit.Test;
 
@@ -22,8 +23,8 @@ public class TestOrderClass {
 	public void testConstructor() {
 		Supplier supplier = new Supplier();
 		Employee employee = new Employee();
-		Date date = new Date();
-		Order order = new Order(1, 2, true, date, supplier, employee);
+		Calendar calendar = new GregorianCalendar();
+		Order order = new Order(1, 2, true, calendar, supplier, employee);
 		assertNotNull(order);
 	}
 
@@ -66,12 +67,20 @@ public class TestOrderClass {
 		assertTrue(order.isConfirmed());
 	}
 
-	// TODO: Get/Set for orderDate!
-//	@Test
-//	public void testGetOrderDate() {
-//		Order order = new Order();
-//		order.getOrderDate().getYear();
-//	}
+	@Test
+	public void testGetOrderDate() {
+		Order order = new Order();
+		Calendar calendar = order.getOrderDate();
+		assertEquals(calendar, order.orderDate);
+	}
+	
+	@Test
+	public void testSetOrderDate() {
+		Order order = new Order();
+		Calendar calendar = new GregorianCalendar(2018, 12, 14);
+		order.setOrderDate(calendar);
+		assertEquals(order.getOrderDate(), order.orderDate);
+	}
 
 	@Test
 	public void testGetSupplier() {

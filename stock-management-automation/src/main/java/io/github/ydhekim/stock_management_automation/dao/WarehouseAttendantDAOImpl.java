@@ -84,7 +84,6 @@ public class WarehouseAttendantDAOImpl implements WarehouseAttendantDAO {
 		}
 	}
 
-	// TODO: sql kontrol et!
 	@Override
 	public void updateWarehouseAttendant(int warehouseAttendantId, int password, String firstName, String lastName,
 			int departmentId) {
@@ -120,7 +119,6 @@ public class WarehouseAttendantDAOImpl implements WarehouseAttendantDAO {
 
 	}
 
-	// TODO: gozden gecir
 	@Override
 	public Employee getWarehouseAttendant(int warehouseAttendantId) {
 		Employee employee = new Employee();
@@ -169,12 +167,9 @@ public class WarehouseAttendantDAOImpl implements WarehouseAttendantDAO {
 		return employee;
 	}
 
-	// TODO: tekrar bak
 	@Override
 	public ArrayList<Employee> getAllWarehouseAttendants() {
-		Employee employee = new Employee();
-		Department department = new Department();
-		ArrayList<Employee> list = new ArrayList<Employee>();
+		ArrayList<Employee> employees = new ArrayList<Employee>();
 		try {
 			Class.forName(JDBC_DRIVER);
 			connection = DriverManager.getConnection(DB_URL, USER, PASS);
@@ -183,6 +178,8 @@ public class WarehouseAttendantDAOImpl implements WarehouseAttendantDAO {
 			ResultSet resultSet = statement.executeQuery(sql);
 
 			while (resultSet.next()) {
+				Employee employee = new Employee();
+				Department department = new Department();
 				int employeeIdFromDatabase = resultSet.getInt("employee_id");
 				int departmentIdFromDatabase = resultSet.getInt("department_id");
 				int passwordFromDatabase = resultSet.getInt("password");
@@ -195,7 +192,7 @@ public class WarehouseAttendantDAOImpl implements WarehouseAttendantDAO {
 				employee.setFirstName(employeeFirstNameFromDatabase);
 				employee.setLastName(employeeLastNameFromDatabase);
 
-				list.add(employee);
+				employees.add(employee);
 			}
 			resultSet.close();
 			statement.close();
@@ -219,7 +216,7 @@ public class WarehouseAttendantDAOImpl implements WarehouseAttendantDAO {
 				se.printStackTrace();
 			}
 		}
-		return list;
+		return employees;
 	}
 
 }

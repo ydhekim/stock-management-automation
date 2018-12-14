@@ -1,8 +1,7 @@
 package io.github.ydhekim.stock_management_automation.dao;
 
-import java.util.List;
+import java.util.ArrayList;
 
-import io.github.ydhekim.stock_management_automation.model.Product;
 import io.github.ydhekim.stock_management_automation.model.Supplier;
 
 public interface SupplierDAO {
@@ -15,6 +14,6 @@ public interface SupplierDAO {
 	
 	public Supplier getSupplier(int supplierId);
 	
-	public String getAllSuppliers(); 
+	public ArrayList<Supplier> getAllSuppliers(); 
 
 }

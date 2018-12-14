@@ -3,18 +3,18 @@
  * */
 package io.github.ydhekim.stock_management_automation.model;
 
-import java.util.Date;
+import java.util.Calendar;
 
 public class Order {
 
 	protected int id;
 	protected int amount;
 	protected boolean confirmed;
-	protected Date orderDate;
+	protected Calendar orderDate;
 	protected Supplier supplier;
 	protected Employee employee;
 
-	public Order(int id, int amount, boolean confirmed, Date orderDate, Supplier supplier, Employee employee) {
+	public Order(int id, int amount, boolean confirmed, Calendar orderDate, Supplier supplier, Employee employee) {
 		this.id = id;
 		this.amount = amount;
 		this.confirmed = false;
@@ -50,13 +50,13 @@ public class Order {
 		this.confirmed = confirmed;
 	}
 
-//	public Date getOrderDate() {
-//		return orderDate;
-//	}
-//
-//	public void setOrderDate(Date orderDate) {
-//		this.orderDate = orderDate;
-//	}
+	public Calendar getOrderDate() {
+		return orderDate;
+	}
+
+	public void setOrderDate(Calendar orderDate) {
+		this.orderDate = orderDate;
+	}
 
 	public Supplier getSupplier() {
 		return supplier;
