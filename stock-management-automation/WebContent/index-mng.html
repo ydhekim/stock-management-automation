@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>manager page</title>
+</head>
+<body>
+
+	<h2>Menu</h2>
+	
+	<h3>1. Departman Ekleme</h3>
+		<form action="InsertDepartmentController" method="post">
+			Departman ID <input name="departmentId" type="text"> <br>
+			Departman Adi <input name="departmentName" type="text"> <br>
+			<input type="submit" value="Ekle!">
+		</form>
+		
+	<h3>2. Departman Silme</h3>
+		<form action="DeleteDepartmentController" method="post">
+			Departman ID <input name="departmentId" type="text"> <br>
+			<input type="submit" value="Sil!">
+		</form>
+		
+	<h3>3. Departman Guncelleme</h3>
+		<form action="UpdateDepartmentController" method="post">
+			Departman ID <input name="departmentId" type="text"> <br>
+			Departman Adi <input name="departmentName" type="text"> <br>
+			<input type="submit" value="Guncelle!">
+		</form>
+
+</body>
+</html>
