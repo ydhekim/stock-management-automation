@@ -8,9 +8,8 @@ import java.sql.Statement;
 import java.util.ArrayList;
 
 import io.github.ydhekim.stock_management_automation.model.Product;
-import io.github.ydhekim.stock_management_automation.model.Supplier;
 
-public class SupplierDAOImpl implements SupplierDAO {
+public class ProductDAOImpl implements ProductDAO {
 
 	public static final String JDBC_DRIVER = "org.h2.Driver";
 	public static final String DB_URL = "jdbc:h2:~/stock-management-automation";
@@ -20,115 +19,27 @@ public class SupplierDAOImpl implements SupplierDAO {
 	Connection connection = null;
 	Statement statement = null;
 
-	public void insertSupplier(int supplierId, String supplierName, int productId) {
-		try {
-			Class.forName(JDBC_DRIVER);
-			connection = DriverManager.getConnection(DB_URL, USER, PASS);
-			statement = connection.createStatement();
-			String sql = "INSERT INTO SUPPLIER VALUES(" + supplierId + "," + productId + ",'" + supplierName + "')";
-			statement.execute(sql);
-			statement.close();
-			connection.close();
-		} catch (SQLException e) {
-			e.printStackTrace();
-		} catch (ClassNotFoundException e) {
-			e.printStackTrace();
-		} catch (Exception e) {
-			e.printStackTrace();
-		} finally {
-			try {
-				if (statement != null)
-					statement.close();
-			} catch (SQLException se2) {
-			}
-			try {
-				if (connection != null)
-					connection.close();
-			} catch (SQLException se) {
-				se.printStackTrace();
-			}
-		}
-
-	}
-
-	public void deleteSupplier(int supplierId) {
-		try {
-			Class.forName(JDBC_DRIVER);
-			connection = DriverManager.getConnection(DB_URL, USER, PASS);
-			statement = connection.createStatement();
-			String sql = "DELETE FROM supplier WHERE supplier_id = " + supplierId;
-			statement.execute(sql);
-			statement.close();
-			connection.close();
-		} catch (SQLException e) {
-			e.printStackTrace();
-		} catch (ClassNotFoundException e) {
-			e.printStackTrace();
-		} catch (Exception e) {
-			e.printStackTrace();
-		} finally {
-			try {
-				if (statement != null)
-					statement.close();
-			} catch (SQLException se2) {
-			}
-			try {
-				if (connection != null)
-					connection.close();
-			} catch (SQLException se) {
-				se.printStackTrace();
-			}
-		}
-	}
-
-	public void updateSupplier(int supplierId, String supplierName, int productId) {
-		try {
-			Class.forName(JDBC_DRIVER);
-			connection = DriverManager.getConnection(DB_URL, USER, PASS);
-			statement = connection.createStatement();
-			String sql = "UPDATE supplier SET product_id = " + productId + ", supplier_name = '" + supplierName
-					+ "' WHERE supplier_id = " + supplierId;
-			statement.execute(sql);
-			statement.close();
-			connection.close();
-		} catch (SQLException e) {
-			e.printStackTrace();
-		} catch (ClassNotFoundException e) {
-			e.printStackTrace();
-		} catch (Exception e) {
-			e.printStackTrace();
-		} finally {
-			try {
-				if (statement != null)
-					statement.close();
-			} catch (SQLException se2) {
-			}
-			try {
-				if (connection != null)
-					connection.close();
-			} catch (SQLException se) {
-				se.printStackTrace();
-			}
-		}
-	}
-
-	public Supplier getSupplier(int supplierId) {
-		Supplier supplier = new Supplier();
+	@Override
+	public Product getProduct(int productId) {
 		Product product = new Product();
 		try {
 			Class.forName(JDBC_DRIVER);
 			connection = DriverManager.getConnection(DB_URL, USER, PASS);
 			statement = connection.createStatement();
-			String sql = "SELECT * FROM supplier WHERE supplier_id = " + supplierId;
+			String sql = "SELECT * FROM PRODUCT WHERE PRODUCT_ID = " + productId;
 			ResultSet resultSet = statement.executeQuery(sql);
+
 			while (resultSet.next()) {
-				int supplierIdFromDatabase = resultSet.getInt("supplier_id");
-				int productIdFromDatabase = resultSet.getInt("product_id");
-				String supplierNameFromDatabase = resultSet.getString("SUPPLIER_NAME");
+				int productIdFromDatabase = resultSet.getInt("PRODUCT_ID");
+				int productAmountFromDatabase = resultSet.getInt("PRODUCT_AMOUNT");
+				String productNameFromDatabase = resultSet.getString("PRODUCT_NAME");
+				String productTypeFromDatabase = resultSet.getString("PRODUCT_TYPE");
+
 				product.setId(productIdFromDatabase);
-				supplier.setId(supplierIdFromDatabase);
-				supplier.setProduct(product);
-				supplier.setName(supplierNameFromDatabase);
+				product.setAmount(productAmountFromDatabase);
+				product.setName(productNameFromDatabase);
+				product.setType(productTypeFromDatabase);
+
 			}
 			resultSet.close();
 			statement.close();
@@ -152,31 +63,98 @@ public class SupplierDAOImpl implements SupplierDAO {
 				se.printStackTrace();
 			}
 		}
-		return supplier;
+		return product;
 	}
 
 	@Override
-	public ArrayList<Supplier> getAllSuppliers() {
-		ArrayList<Supplier> suppliers = new ArrayList<Supplier>();
+	public void insertProduct(int productId, int productAmount, String productName, String productType) {
 		try {
 			Class.forName(JDBC_DRIVER);
 			connection = DriverManager.getConnection(DB_URL, USER, PASS);
 			statement = connection.createStatement();
-			String sql = "SELECT * FROM supplier";
+			String sql = "INSERT INTO product VALUES(" + productId + "," + productAmount + ",'" + productName + "','"
+					+ productType + "')";
+			statement.execute(sql);
+			statement.close();
+			connection.close();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} catch (ClassNotFoundException e) {
+			e.printStackTrace();
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			try {
+				if (statement != null)
+					statement.close();
+			} catch (SQLException se2) {
+			}
+			try {
+				if (connection != null)
+					connection.close();
+			} catch (SQLException se) {
+				se.printStackTrace();
+			}
+		}
+
+	}
+
+	@Override
+	public void updateProduct(int productId, int productAmount, String productName, String productType) {
+		try {
+			Class.forName(JDBC_DRIVER);
+			connection = DriverManager.getConnection(DB_URL, USER, PASS);
+			statement = connection.createStatement();
+			String sql = "UPDATE product SET product_amount = " + productAmount + ", product_name = '" + productName
+					+ "', product_type = '" + productType + "' WHERE product_id = " + productId;
+			statement.execute(sql);
+			statement.close();
+			connection.close();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} catch (ClassNotFoundException e) {
+			e.printStackTrace();
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			try {
+				if (statement != null)
+					statement.close();
+			} catch (SQLException se2) {
+			}
+			try {
+				if (connection != null)
+					connection.close();
+			} catch (SQLException se) {
+				se.printStackTrace();
+			}
+		}
+	}
+
+	@Override
+	public ArrayList<Product> getAllProducts() {
+		ArrayList<Product> products = new ArrayList<>();
+		try {
+			Class.forName(JDBC_DRIVER);
+			connection = DriverManager.getConnection(DB_URL, USER, PASS);
+			statement = connection.createStatement();
+			String sql = "SELECT * FROM product";
 			ResultSet resultSet = statement.executeQuery(sql);
 
 			while (resultSet.next()) {
-				Supplier supplier = new Supplier();
 				Product product = new Product();
-				int supplierIdFromDatabase = resultSet.getInt("supplier_id");
-				int productIdFromDatabase = resultSet.getInt("product_id");
-				String supplierNameFromDatabase = resultSet.getString("supplier_name");
-				supplier.setId(supplierIdFromDatabase);
-				product.setId(productIdFromDatabase);
-				supplier.setProduct(product);
-				supplier.setName(supplierNameFromDatabase);
 
-				suppliers.add(supplier);
+				int productIdFromDatabase = resultSet.getInt("product_id");
+				int productAmountFromDatabase = resultSet.getInt("product_amount");
+				String productNameFromDatabase = resultSet.getString("product_name");
+				String productTypeFromDatabase = resultSet.getString("product_type");
+
+				product.setId(productIdFromDatabase);
+				product.setAmount(productAmountFromDatabase);
+				product.setName(productNameFromDatabase);
+				product.setType(productTypeFromDatabase);
+
+				products.add(product);
 			}
 			resultSet.close();
 			statement.close();
@@ -200,7 +178,38 @@ public class SupplierDAOImpl implements SupplierDAO {
 				se.printStackTrace();
 			}
 		}
-		return suppliers;
+		return products;
+	}
+
+	@Override
+	public void deleteProduct(int productId) {
+		try {
+			Class.forName(JDBC_DRIVER);
+			connection = DriverManager.getConnection(DB_URL, USER, PASS);
+			statement = connection.createStatement();
+			String sql = "DELETE FROM product WHERE product_id = " + productId;
+			statement.execute(sql);
+			statement.close();
+			connection.close();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} catch (ClassNotFoundException e) {
+			e.printStackTrace();
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			try {
+				if (statement != null)
+					statement.close();
+			} catch (SQLException se2) {
+			}
+			try {
+				if (connection != null)
+					connection.close();
+			} catch (SQLException se) {
+				se.printStackTrace();
+			}
+		}
 	}
 
 }

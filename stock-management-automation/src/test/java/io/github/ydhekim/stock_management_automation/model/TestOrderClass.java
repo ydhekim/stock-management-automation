@@ -77,7 +77,7 @@ public class TestOrderClass {
 	@Test
 	public void testSetOrderDate() {
 		Order order = new Order();
-		Calendar calendar = new GregorianCalendar(2018, 12, 14);
+		Calendar calendar = new GregorianCalendar();
 		order.setOrderDate(calendar);
 		assertEquals(order.getOrderDate(), order.orderDate);
 	}
