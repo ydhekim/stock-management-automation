@@ -132,9 +132,9 @@ public class OrderDAOImpl implements OrderDAO {
 				int amountFromDatabase = resultSet.getInt("order_amount");
 				boolean confirmedFromDatabase = resultSet.getBoolean("order_status");
 
-				Date orderDateFromDatabase = resultSet.getDate("order_date");
-				Calendar calendar = new GregorianCalendar();
-				calendar.setTime(orderDateFromDatabase);
+//				Date orderDateFromDatabase = resultSet.getDate("order_date");
+//				Calendar calendar = new GregorianCalendar();
+//				calendar.setTime(orderDateFromDatabase);
 
 				int supplierIdFromDatabase = resultSet.getInt("supplier_id");
 				int employeeIdFromDatabase = resultSet.getInt("employee_id");
@@ -142,7 +142,6 @@ public class OrderDAOImpl implements OrderDAO {
 				order.setId(orderIdFromDatabase);
 				order.setAmount(amountFromDatabase);
 				order.setConfirmed(confirmedFromDatabase);
-				order.setOrderDate(calendar);
 				supplier.setId(supplierIdFromDatabase);
 				order.setSupplier(supplier);
 				employee.setId(employeeIdFromDatabase);
@@ -177,25 +176,27 @@ public class OrderDAOImpl implements OrderDAO {
 	}
 
 	@Override
-	public Order showOrderStatus(int employeeId) {
-		Order order = new Order();
-		Supplier supplier = new Supplier();
-		Employee employee = new Employee();
+	public ArrayList<Order> showOrderStatus(int employeeId) {
+		ArrayList<Order> orders = new ArrayList<>();
 		try {
 			Class.forName(JDBC_DRIVER);
 			connection = DriverManager.getConnection(DB_URL, USER, PASS);
 			statement = connection.createStatement();
-			String sql = "SELECT * FROM ORDERS WHERE ORDER_ID = " + employeeId;
+			String sql = "SELECT * FROM orders WHERE employee_id = " + employeeId;
 			ResultSet resultSet = statement.executeQuery(sql);
 
 			while (resultSet.next()) {
+				Order order = new Order();
+				Supplier supplier = new Supplier();
+				Employee employee = new Employee();
+				
 				int orderIdFromDatabase = resultSet.getInt("ORDER_ID");
 				int orderAmountFromDatabase = resultSet.getInt("ORDER_AMOUNT");
 				boolean confirmedFromDatabase = resultSet.getBoolean("ORDER_STATUS");
 
-				Date orderDateFromDatabase = resultSet.getDate("ORDER_DATE");
-				Calendar calendar = new GregorianCalendar();
-				calendar.setTime(orderDateFromDatabase);
+//				Date orderDateFromDatabase = resultSet.getDate("ORDER_DATE");
+//				Calendar calendar = new GregorianCalendar();
+//				calendar.setTime(orderDateFromDatabase);
 
 				int supplierIdFromDatabase = resultSet.getInt("SUPPLIER_ID");
 				int employeeIdFromDatabase = resultSet.getInt("EMPLOYEE_ID");
@@ -203,11 +204,13 @@ public class OrderDAOImpl implements OrderDAO {
 				order.setId(orderIdFromDatabase);
 				order.setAmount(orderAmountFromDatabase);
 				order.setConfirmed(confirmedFromDatabase);
-				order.setOrderDate(calendar);
+//				order.setOrderDate(calendar);
 				supplier.setId(supplierIdFromDatabase);
 				order.setSupplier(supplier);
 				employee.setId(employeeIdFromDatabase);
 				order.setEmployee(employee);
+				
+				orders.add(order);
 			}
 			resultSet.close();
 			statement.close();
@@ -231,18 +234,17 @@ public class OrderDAOImpl implements OrderDAO {
 				se.printStackTrace();
 			}
 		}
-		return order;
+		return orders;
 	}
 
 	@Override
-	public void placeOrder(int orderId, int supplierId, int employeeId, int orderAmount, boolean orderStatus,
-			Calendar orderDate) {
+	public void placeOrder(int orderId, int supplierId, int employeeId, int orderAmount, boolean orderStatus) {
 		try {
 			Class.forName(JDBC_DRIVER);
 			connection = DriverManager.getConnection(DB_URL, USER, PASS);
 			statement = connection.createStatement();
 			String sql = "INSERT INTO ORDERS VALUES(" + orderId + "," + supplierId + "," + employeeId + ","
-					+ orderAmount + "," + orderStatus + "," + orderDate + " )";
+					+ orderAmount + "," + orderStatus + ")";
 			statement.execute(sql);
 			statement.close();
 			connection.close();

@@ -9,11 +9,11 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import io.github.ydhekim.stock_management_automation.dao.DepartmentDAO;
-import io.github.ydhekim.stock_management_automation.dao.DepartmentDAOImpl;
+import io.github.ydhekim.stock_management_automation.dao.WarehouseAttendantDAO;
+import io.github.ydhekim.stock_management_automation.dao.WarehouseAttendantDAOImpl;
 
-@WebServlet("/InsertDepartmentController")
-public class InsertDepartmentController extends HttpServlet {
+@WebServlet("/InsertWarehouseAttendantController")
+public class InsertWarehouseAttendantController extends HttpServlet {
 
 	private static final long serialVersionUID = 1L;
 
@@ -22,12 +22,16 @@ public class InsertDepartmentController extends HttpServlet {
 
 		response.setContentType("text/html");
 		PrintWriter out = response.getWriter();
-		DepartmentDAO departmentDAO = new DepartmentDAOImpl();
+		WarehouseAttendantDAO warehouseAttendantDAO = new WarehouseAttendantDAOImpl();
 
+		int warehouseAttendantId = Integer.parseInt(request.getParameter("warehouseAttendantId"));
+		int password = Integer.parseInt(request.getParameter("password"));
+		String firstName = request.getParameter("firstName");
+		String lastName = request.getParameter("lastName");
 		int departmentId = Integer.parseInt(request.getParameter("departmentId"));
-		String departmentName = request.getParameter("departmentName");
 
-		departmentDAO.insertDepartment(departmentId, departmentName);
+		warehouseAttendantDAO.insertWarehouseAttendant(warehouseAttendantId, password, firstName, lastName,
+				departmentId);
 
 		out.println("Ekleme Basarili!");
 		request.getRequestDispatcher("index-mng.jsp").include(request, response);

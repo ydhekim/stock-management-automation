@@ -9,11 +9,11 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import io.github.ydhekim.stock_management_automation.dao.DepartmentDAO;
-import io.github.ydhekim.stock_management_automation.dao.DepartmentDAOImpl;
+import io.github.ydhekim.stock_management_automation.dao.WarehouseAttendantDAO;
+import io.github.ydhekim.stock_management_automation.dao.WarehouseAttendantDAOImpl;
 
-@WebServlet("/DeleteDepartmentController")
-public class DeleteDepartmentController extends HttpServlet {
+@WebServlet("/DeleteWarehouseAttendantController")
+public class DeleteWarehouseAttendantController extends HttpServlet {
 
 	private static final long serialVersionUID = 1L;
 
@@ -22,15 +22,15 @@ public class DeleteDepartmentController extends HttpServlet {
 
 		response.setContentType("text/html");
 		PrintWriter out = response.getWriter();
-		DepartmentDAO departmentDAO = new DepartmentDAOImpl();
+		WarehouseAttendantDAO warehouseAttendantDAO = new WarehouseAttendantDAOImpl();
 
-		int departmentId = Integer.parseInt(request.getParameter("departmentId"));
+		int warehouseAttendantId = Integer.parseInt(request.getParameter("warehouseAttendantId"));
 
-		departmentDAO.deleteDepartment(departmentId);
-		
+		warehouseAttendantDAO.deleteWarehouseAttendant(warehouseAttendantId);
+
 		out.println("Silme Basarili!");
 		request.getRequestDispatcher("index-mng.jsp").include(request, response);
-		
+
 		out.close();
 	}
 

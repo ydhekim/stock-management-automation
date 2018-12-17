@@ -2,6 +2,7 @@ package io.github.ydhekim.stock_management_automation.dao;
 
 import static org.junit.Assert.*;
 
+import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.GregorianCalendar;
 
@@ -32,15 +33,15 @@ public class TestOrderDAO {
 	public void testPlaceOrder() {
 		OrderDAO orderDAO = new OrderDAOImpl();
 		Order order = new Order();
-		Calendar calendar = new GregorianCalendar(2018, 12, 16);
-		orderDAO.placeOrder(2, 1, 1, 10, true, calendar);
+	//	Calendar calendar = new GregorianCalendar(2018, 12, 16);
+		orderDAO.placeOrder(2, 1, 1, 10, true);
 		assertNotNull(order.getId());
 	}
 
 	@Test
 	public void testShowOrderStatus() {
 		OrderDAO orderDAO = new OrderDAOImpl();
-		Order order = orderDAO.showOrderStatus(1);
-		assertEquals(orderDAO.showOrderStatus(1).getEmployee(), order.getEmployee());
+		ArrayList<Order> orders = orderDAO.showOrderStatus(1);
+		assertNotNull(orders);
 	}
 }

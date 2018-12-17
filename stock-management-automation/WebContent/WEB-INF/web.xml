@@ -1,50 +1,40 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<web-app xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-	xmlns="http://java.sun.com/xml/ns/javaee"
-	xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-app_3_0.xsd"
-	version="3.0">
-	<display-name>stock-management-automation</display-name>
-	<welcome-file-list>
-		<welcome-file>index.html</welcome-file>
-	</welcome-file-list>
-
-	<servlet>
-		<servlet-name>LoginController</servlet-name>
-		<servlet-class>io.github.ydhekim.stock_management_automation.controller.LoginController</servlet-class>
-	</servlet>
-
-	<servlet-mapping>
-		<servlet-name>LoginController</servlet-name>
-		<url-pattern>/LoginController/*</url-pattern>
-	</servlet-mapping>
-
-	<servlet>
-		<servlet-name>InsertDepartmentController</servlet-name>
-		<servlet-class>io.github.ydhekim.stock_management_automation.controller.InsertDepartmentController</servlet-class>
-	</servlet>
-
-	<servlet-mapping>
-		<servlet-name>InsertDepartmentController</servlet-name>
-		<url-pattern>/InsertDepartmentController/*</url-pattern>
-	</servlet-mapping>
-
-	<servlet>
-		<servlet-name>DeleteDepartmentController</servlet-name>
-		<servlet-class>io.github.ydhekim.stock_management_automation.controller.DeleteDepartmentController</servlet-class>
-	</servlet>
-
-	<servlet-mapping>
-		<servlet-name>DeleteDepartmentController</servlet-name>
-		<url-pattern>/DeleteDepartmentController/*</url-pattern>
-	</servlet-mapping>
-
-	<servlet>
-		<servlet-name>UpdateDepartmentController</servlet-name>
-		<servlet-class>io.github.ydhekim.stock_management_automation.controller.UpdateDepartmentController</servlet-class>
-	</servlet>
-
-	<servlet-mapping>
-		<servlet-name>UpdateDepartmentController</servlet-name>
-		<url-pattern>/UpdateDepartmentController/*</url-pattern>
-	</servlet-mapping>
+<web-app xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://java.sun.com/xml/ns/javaee" xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-app_3_0.xsd" version="3.0">
+  <display-name>stock-management-automation</display-name>
+  <welcome-file-list>
+    <welcome-file>index.html</welcome-file>
+    <welcome-file>index.jsp</welcome-file>
+  </welcome-file-list>
+  <servlet>
+    <servlet-name>LoginController</servlet-name>
+    <servlet-class>io.github.ydhekim.stock_management_automation.controller.LoginController</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>LoginController</servlet-name>
+    <url-pattern>/LoginController/*</url-pattern>
+  </servlet-mapping>
+  <servlet>
+    <servlet-name>InsertDepartmentController</servlet-name>
+    <servlet-class>io.github.ydhekim.stock_management_automation.controller.InsertDepartmentController</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>InsertDepartmentController</servlet-name>
+    <url-pattern>/InsertDepartmentController/*</url-pattern>
+  </servlet-mapping>
+  <servlet>
+    <servlet-name>DeleteDepartmentController</servlet-name>
+    <servlet-class>io.github.ydhekim.stock_management_automation.controller.DeleteDepartmentController</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>DeleteDepartmentController</servlet-name>
+    <url-pattern>/DeleteDepartmentController/*</url-pattern>
+  </servlet-mapping>
+  <servlet>
+    <servlet-name>UpdateDepartmentController</servlet-name>
+    <servlet-class>io.github.ydhekim.stock_management_automation.controller.UpdateDepartmentController</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>UpdateDepartmentController</servlet-name>
+    <url-pattern>/UpdateDepartmentController/*</url-pattern>
+  </servlet-mapping>
 </web-app>

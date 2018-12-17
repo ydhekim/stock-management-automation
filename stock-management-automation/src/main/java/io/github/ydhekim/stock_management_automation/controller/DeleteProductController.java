@@ -9,11 +9,11 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import io.github.ydhekim.stock_management_automation.dao.DepartmentDAO;
-import io.github.ydhekim.stock_management_automation.dao.DepartmentDAOImpl;
+import io.github.ydhekim.stock_management_automation.dao.ProductDAO;
+import io.github.ydhekim.stock_management_automation.dao.ProductDAOImpl;
 
-@WebServlet("/DeleteDepartmentController")
-public class DeleteDepartmentController extends HttpServlet {
+@WebServlet("/DeleteProductController")
+public class DeleteProductController extends HttpServlet {
 
 	private static final long serialVersionUID = 1L;
 
@@ -22,16 +22,16 @@ public class DeleteDepartmentController extends HttpServlet {
 
 		response.setContentType("text/html");
 		PrintWriter out = response.getWriter();
-		DepartmentDAO departmentDAO = new DepartmentDAOImpl();
+		ProductDAO productDAO = new ProductDAOImpl();
 
-		int departmentId = Integer.parseInt(request.getParameter("departmentId"));
+		int productId = Integer.parseInt(request.getParameter("productId"));
 
-		departmentDAO.deleteDepartment(departmentId);
+		productDAO.deleteProduct(productId);
 		
 		out.println("Silme Basarili!");
-		request.getRequestDispatcher("index-mng.jsp").include(request, response);
-		
+		request.getRequestDispatcher("index-war.jsp").include(request, response);
+
 		out.close();
 	}
-
+	
 }

@@ -13,9 +13,8 @@ public interface OrderDAO {
 
 	public void confirmOrder(int orderId);
 
-	public void placeOrder(int orderId, int supplierId, int employeeId, int orderAmount, boolean orderStatus,
-			Calendar orderDate);
+	public void placeOrder(int orderId, int supplierId, int employeeId, int orderAmount, boolean orderStatus);
 
-	public Order showOrderStatus(int employeeId);
+	public ArrayList<Order> showOrderStatus(int employeeId);
 
 }
